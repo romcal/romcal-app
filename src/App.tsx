@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense, FunctionComponent } from 'react';
+import { Container, Row, Col, Navbar, NavbarBrand } from 'reactstrap';
+import CalendarLoader from './components/loaders/CalendarLoader';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 
-const App = () => {
+// import styles from './App.module.scss';
+
+const Calendar = lazy(() => import('./components/calendar/Calendar'));
+
+const App: FunctionComponent = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <Navbar color="dark" light expand="lg">
+        <NavbarBrand href="/">romcal</NavbarBrand>
+      </Navbar>
+      <Container>
+        <Row>
+          <Col>
+            <Suspense fallback={<CalendarLoader />}>
+              <Calendar />
+            </Suspense>
+          </Col>
+        </Row>
+      </Container>
+    </ErrorBoundary>
   );
-}
+};
 
 export default App;

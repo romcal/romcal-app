@@ -1,0 +1,14 @@
+// Darkly Boostrap Theme Variables
+@import 'styles/variables';
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+// Darkly Bootstrap Theme
+@import 'styles/bootswatch';
+
+// Import Full Calendar Resources
+@import '~@fullcalendar/core/main';
+@import '~@fullcalendar/list/main';
+@import '~@fullcalendar/daygrid/main';
+@import '~@fullcalendar/bootstrap/main';
