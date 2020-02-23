@@ -6,6 +6,8 @@ import React, {
   RefObject,
 } from 'react';
 
+import { Calendar as Romcal } from 'romcal';
+
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
@@ -13,6 +15,10 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 
 const Calendar: FunctionComponent = () => {
   const calendarRef: RefObject<FullCalendar> = useRef<FullCalendar>(null);
+
+  useEffect(() => {
+    Romcal.calendarFor();
+  }, []);
 
   useEffect(() => {
     const calendarApi = calendarRef.current?.getApi();
