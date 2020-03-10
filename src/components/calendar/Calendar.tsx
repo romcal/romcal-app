@@ -6,19 +6,23 @@ import React, {
   RefObject,
 } from 'react';
 
-import { Calendar as Romcal } from 'romcal';
-
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 
+import Romcal from 'romcal';
+
 const Calendar: FunctionComponent = () => {
   const calendarRef: RefObject<FullCalendar> = useRef<FullCalendar>(null);
 
   useEffect(() => {
-    Romcal.calendarFor();
-  }, []);
+    const getDates = async () => {
+      const dates = await Romcal.calendarFor();
+      console.log(dates.map(date => `${date.key}: ${date.name}`));
+    };
+    getDates();
+  });
 
   useEffect(() => {
     const calendarApi = calendarRef.current?.getApi();
